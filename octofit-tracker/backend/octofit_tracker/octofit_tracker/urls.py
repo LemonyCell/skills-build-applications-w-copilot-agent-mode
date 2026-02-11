@@ -14,8 +14,23 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+from rest_framework import routers
+from octofit_tracker.views import (
+    api_root, UserViewSet, TeamViewSet, ActivityViewSet,
+    LeaderboardViewSet, WorkoutViewSet
+)
+
+router = routers.DefaultRouter()
+router.register(r'users', UserViewSet)
+router.register(r'teams', TeamViewSet)
+router.register(r'activities', ActivityViewSet)
+router.register(r'leaderboard', LeaderboardViewSet)
+router.register(r'workouts', WorkoutViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', api_root, name='api-root'),
+    path('api/', api_root, name='api-root'),
+    path('api/', include(router.urls)),
 ]
