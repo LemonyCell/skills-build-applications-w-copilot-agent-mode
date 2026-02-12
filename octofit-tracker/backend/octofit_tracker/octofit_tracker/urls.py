@@ -13,8 +13,6 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-
-import os
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
@@ -22,11 +20,6 @@ from octofit_tracker.views import (
     api_root, UserViewSet, TeamViewSet, ActivityViewSet,
     LeaderboardViewSet, WorkoutViewSet
 )
-
-def get_api_url(component):
-    codespace_name = os.environ.get('CODESPACE_NAME', 'localhost')
-    base_url = f"https://{codespace_name}-8000.app.github.dev" if codespace_name != 'localhost' else "http://localhost:8000"
-    return f"{base_url}/api/{component}/"
 
 router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
