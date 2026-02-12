@@ -9,7 +9,7 @@
       "args": ["runserver", "0.0.0.0:8000"],
       "django": true,
       "justMyCode": true,
-      "cwd": "${workspaceFolder}/octofit-tracker/backend/octofit_tracker",
+      "cwd": "${workspaceFolder}/octofit-tracker/backend",
       "python": "${workspaceFolder}/octofit-tracker/backend/venv/bin/python",
       "env": {
         "PYTHONUNBUFFERED": "1"

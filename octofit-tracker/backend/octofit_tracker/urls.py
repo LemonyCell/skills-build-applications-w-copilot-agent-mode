@@ -22,6 +22,8 @@ from octofit_tracker.views import (
     LeaderboardViewSet, WorkoutViewSet
 )
 
+ CODESPACE_NAME = os.environ.get('CODESPACE_NAME', 'localhost')
+ base_url = f"https://{CODESPACE_NAME}-8000.app.github.dev/api/"
 
 router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
@@ -34,4 +36,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', api_root, name='api-root'),
     path('api/', include(router.urls)),
+    path('api/activities/', views.activities, name='activities'),
+    path('api/users/', views.users, name='users'),
+    path('api/teams/', views.teams, name='teams'),
+    path('api/leaderboard/', views.leaderboard, name='leaderboard'),
+    path('api/workouts/', views.workouts, name='workouts'),
 ]
