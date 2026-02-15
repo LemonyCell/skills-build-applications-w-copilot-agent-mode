@@ -1,6 +1,6 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
-import logo from './logo.svg';
+import { BrowserRouter as Router, Route, Routes, NavLink } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import Activities from './components/Activities';
 import Leaderboard from './components/Leaderboard';
@@ -12,22 +12,42 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <nav>
-          <ul>
-            <li><Link to="/activities">Activities</Link></li>
-            <li><Link to="/leaderboard">Leaderboard</Link></li>
-            <li><Link to="/teams">Teams</Link></li>
-            <li><Link to="/users">Users</Link></li>
-            <li><Link to="/workouts">Workouts</Link></li>
-          </ul>
+        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+          <div className="container-fluid">
+            <NavLink className="navbar-brand" to="/">Octofit Tracker</NavLink>
+            <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span className="navbar-toggler-icon"></span>
+            </button>
+            <div className="collapse navbar-collapse" id="navbarNav">
+              <ul className="navbar-nav">
+                <li className="nav-item">
+                  <NavLink className="nav-link" to="/activities">Activities</NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink className="nav-link" to="/leaderboard">Leaderboard</NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink className="nav-link" to="/teams">Teams</NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink className="nav-link" to="/users">Users</NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink className="nav-link" to="/workouts">Workouts</NavLink>
+                </li>
+              </ul>
+            </div>
+          </div>
         </nav>
-        <Routes>
-          <Route path="/activities" element={<Activities />} />
-          <Route path="/leaderboard" element={<Leaderboard />} />
-          <Route path="/teams" element={<Teams />} />
-          <Route path="/users" element={<Users />} />
-          <Route path="/workouts" element={<Workouts />} />
-        </Routes>
+        <div className="container mt-4">
+          <Routes>
+            <Route path="/activities" element={<Activities />} />
+            <Route path="/leaderboard" element={<Leaderboard />} />
+            <Route path="/teams" element={<Teams />} />
+            <Route path="/users" element={<Users />} />
+            <Route path="/workouts" element={<Workouts />} />
+          </Routes>
+        </div>
       </div>
     </Router>
   );

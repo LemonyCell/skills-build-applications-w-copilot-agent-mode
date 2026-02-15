@@ -22,12 +22,25 @@ const Leaderboard = () => {
 
   return (
     <div>
-      <h1>Leaderboard</h1>
-      <ul>
-        {leaderboard.map((entry, index) => (
-          <li key={index}>{entry.name || JSON.stringify(entry)}</li>
-        ))}
-      </ul>
+      <h1 className="mb-4">Leaderboard</h1>
+      <table className="table table-striped">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Score</th>
+          </tr>
+        </thead>
+        <tbody>
+          {leaderboard.map((entry, index) => (
+            <tr key={index}>
+              <td>{index + 1}</td>
+              <td>{entry.name || 'N/A'}</td>
+              <td>{entry.score || 'N/A'}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 };

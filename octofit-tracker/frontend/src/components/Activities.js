@@ -22,12 +22,25 @@ const Activities = () => {
 
   return (
     <div>
-      <h1>Activities</h1>
-      <ul>
-        {activities.map((activity, index) => (
-          <li key={index}>{activity.name || JSON.stringify(activity)}</li>
-        ))}
-      </ul>
+      <h1 className="mb-4">Activities</h1>
+      <table className="table table-striped">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          {activities.map((activity, index) => (
+            <tr key={index}>
+              <td>{index + 1}</td>
+              <td>{activity.name || 'N/A'}</td>
+              <td>{activity.description || 'N/A'}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 };
