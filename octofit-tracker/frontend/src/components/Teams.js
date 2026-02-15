@@ -1,0 +1,35 @@
+import React, { useEffect, useState } from 'react';
+
+const Teams = () => {
+  const [teams, setTeams] = useState([]);
+
+  useEffect(() => {
+    const fetchTeams = async () => {
+      const endpoint = `https://${process.env.REACT_APP_CODESPACE_NAME}-8000.app.github.dev/api/teams/`;
+      console.log(`Fetching data from: ${endpoint}`);
+      try {
+        const response = await fetch(endpoint);
+        const data = await response.json();
+        console.log('Fetched teams data:', data);
+        setTeams(data.results || data);
+      } catch (error) {
+        console.error('Error fetching teams:', error);
+      }
+    };
+
+    fetchTeams();
+  }, []);
+
+  return (
+    <div>
+      <h1>Teams</h1>
+      <ul>
+        {teams.map((team, index) => (
+          <li key={index}>{team.name || JSON.stringify(team)}</li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
+export default Teams;
